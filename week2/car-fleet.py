@@ -10,6 +10,6 @@ class Solution:
         result = []
         for i in range(len(srd)-1,-1,-1):
             result.append((target-srd[i][0])/srd[i][1])
-            if len(result) >= 2 and result[-1] <= result[-2]:
+            if len(result) > 1 and result[-1] <= result[-2]:
                 result.pop()
         return len(result)
