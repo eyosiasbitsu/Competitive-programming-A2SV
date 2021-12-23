@@ -16,10 +16,8 @@ class Solution:
         l2 = []
         for i in range(len(r)):
             l1.append(nums[l[i]:r[i]+1])
-        print (l1)
         
         for char in l1:
             l2.append(self.checkArt(char))
         return l2
             
-                
