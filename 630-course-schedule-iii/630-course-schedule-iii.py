@@ -10,11 +10,10 @@ class Solution:
                 heapq.heappush(heap,-1*el[0])
                 time += el[0]
                 
-            else:
-                if heap:
-                    if el[0] < -1*heap[0]:
-                        time -= (-1*heapq.heappop(heap))
-                        time += el[0]
-                        heapq.heappush(heap,-1*el[0])
+            elif heap:
+                if el[0] < -1*heap[0]:
+                    time -= (-1*heapq.heappop(heap))
+                    time += el[0]
+                    heapq.heappush(heap,-1*el[0])
                     
         return len(heap)
