@@ -1,6 +1,6 @@
-## Add Two Numbers&nbsp;
-# Category	Difficulty	Likes	Dislikes&nbsp;
-algorithms	Medium (38.46%)	17666	3668&nbsp;&nbsp;&nbsp;
+# Add Two Numbers&nbsp;
+## Category	Difficulty	Likes	Dislikes&nbsp;
+## algorithms	Medium (38.46%)	17666	3668&nbsp;&nbsp;&nbsp;
 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.&nbsp;
 
 You may assume the two numbers do not contain any leading zero, except the number 0 itself.&nbsp;
