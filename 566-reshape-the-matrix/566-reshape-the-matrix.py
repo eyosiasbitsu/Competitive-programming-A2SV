@@ -7,15 +7,10 @@ class Solution:
         
         new = [[0 for _ in range(c)] for _ in range(r)]
         
-        temp = []
+        k = 0
         for i in range(m):
             for j in range(n):
-                temp.append(mat[i][j])
-        
-        k = 0
-        for i in range(r):
-            for j in range(c):
-                new[i][j] = temp[k]
+                new[k//c][k%c] = mat[i][j]
                 k += 1
         
         return new
