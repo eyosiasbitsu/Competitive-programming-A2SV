@@ -8,10 +8,9 @@ class Solution:
         if not head:
             return head
         
-        dummy = ListNode(0,head)
-        
         prev = head
         temp = head.next
+        
         while prev and temp:
             while temp and temp.val == prev.val:
                 temp = temp.next
@@ -22,6 +21,6 @@ class Solution:
             if prev:
                 temp = prev.next
                 
-        return dummy.next
+        return head
             
         
