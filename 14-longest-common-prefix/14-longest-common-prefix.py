@@ -20,22 +20,31 @@ class trie:
         
         cur.end = True
     
+    def search(self):
+        cur = self.root
+        stk = [(cur,"")]
+        
+        while stk:
+            nxt,temp = stk.pop()
+            
+            if len(nxt.children) > 1 or len(nxt.children) == 0:
+                return temp
+            
+            if nxt.end:
+                return temp
+            
+            for c in nxt.children:
+                node = nxt.children[c]
+                
+                stk.append((node,temp + c))
+        
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         tr = trie()
         
         for w in strs:
+            if not w:
+                return ""
             tr.add(w)
-            
-        temp = tr.root
-
-        return self.dfs(temp,"")
-    
-    
-    def dfs(self,node,st):
-        if len(node.children) > 1 or node.end == True:
-            print(st)
-            return st
         
-        for c in node.children:
-            return self.dfs(node.children[c], st+c)
+        return tr.search()
