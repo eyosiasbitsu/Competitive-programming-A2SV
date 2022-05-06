@@ -27,10 +27,7 @@ class trie:
         while stk:
             nxt,temp = stk.pop()
             
-            if len(nxt.children) > 1 or len(nxt.children) == 0:
-                return temp
-            
-            if nxt.end:
+            if len(nxt.children) > 1 or nxt.end:
                 return temp
             
             for c in nxt.children:
