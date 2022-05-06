@@ -1,17 +1,13 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        dict1 = defaultdict(list)
+        res = collections.defaultdict(list)
         
         for i in range(len(strs)):
-            w = strs[i]
-            w = sorted(w)
-            w = "".join(w)
+            cur = [0]*26
             
-            dict1[w].append(strs[i])
-                
-        ar = []
+            for c in strs[i]:
+                cur[ord(c) - ord('a')] += 1
+            
+            res[tuple(cur)].append(strs[i])
         
-        for k in dict1:
-            ar.append(dict1[k])
-        
-        return ar
+        return res.values()
