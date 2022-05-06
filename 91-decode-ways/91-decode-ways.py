@@ -1,31 +1,27 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
-        
         self.cach = {}
         
-        def dp(idx):
-            if idx >= len(s):
+        def dp(i):
+            if i >= len(s):
                 return 1
             
-            if s[idx] == "0":
+            if i in self.cach:
+                return self.cach[i]
+            
+            if s[i] == "0":
                 return 0
             
-            if idx == len(s) - 1 and s[idx] != 0:
-                return 1
+            res = dp(i + 1)
             
-            if idx not in self.cach:
-                if s[idx] == "1":
-                    self.cach[idx] = dp(idx+1) + dp(idx+2)
-                    
-                elif s[idx] == "2":
-                    self.cach[idx] = dp(idx + 1)
-                    
-                    if idx < len(s) - 1 and s[idx + 1] <= '6':
-                        self.cach[idx] += dp(idx+2)
-                        
-                else:
-                    self.cach[idx] = dp(idx+1)
-                    
-            return self.cach[idx]
+            if((i+1 < len(s)) and 
+               (s[i] == "1" or 
+                (s[i] == "2" and s[i+1] in "0123456"))):
+                res += dp(i+2)
+            
+            self.cach[i] = res
+            
+            return res
         
         return dp(0)
+            
