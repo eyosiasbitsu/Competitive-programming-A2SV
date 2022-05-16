@@ -1,13 +1,9 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        set1 = set()
+        res = 0
         
-        for n in nums:
-            if n not in set1:
-                set1.add(n)
-            else:
-                set1.remove(n)
-                
-        for i in set1:
-            return i
+        for i in range(len(nums)):
+            res ^= nums[i]
+        
+        return res
                 
