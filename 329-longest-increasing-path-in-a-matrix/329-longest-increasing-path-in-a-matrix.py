@@ -26,8 +26,6 @@ class Solution:
         for row in range(r):
             for col in range(c):
                 dfs(row,col)
-        
-        for v in cach:
-            res = max(cach[v],res)
+                res = max(cach[(row,col)],res)
             
         return res
