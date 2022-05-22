@@ -4,11 +4,7 @@ class Solution:
         
         for n in nums:
             count[n] += 1
-        
-        n = len(nums)//2
-        
-        for num in count:
-            if count[num] == n:
-                return num
+            if count[n] > 1:
+                return n
         
         return -1
