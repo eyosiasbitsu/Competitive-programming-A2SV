@@ -9,15 +9,13 @@ class Solution:
         
         que = deque()
         que.append((0,0,1))
-        step = float("inf")
         grid[0][0] = 1
         
         while que:
             i,j,st = que.popleft()
             
             if (i,j) == (n-1,n-1):
-                step = min(step, st)
-                continue
+                return st
             
             for i_add,j_add in dirs:
                 new_i = i + i_add
@@ -29,4 +27,4 @@ class Solution:
                     que.append((new_i,new_j,st+1))
                     grid[new_i][new_j] = 1
         
-        return step if step != float("inf") else -1
+        return -1
