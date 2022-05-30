@@ -1,33 +1,23 @@
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        if abs(divisor) > abs(dividend):
-            return 0
-
-        positive = (divisor > 0 and dividend > 0) or (divisor < 0 and dividend < 0)
-
-        if abs(divisor) == abs(dividend):
-            return 1 if positive else -1
-
-        ans = 0
-        dividend = abs(dividend)
-        divisor = abs(divisor)
-
-        if divisor > 1:
-            while dividend >= divisor:
-                tempDivisor = divisor
-                multiple = 1
-                while dividend >= tempDivisor:
-                    dividend -= tempDivisor
-                    ans += multiple
-                    multiple = multiple << 1
-                    tempDivisor = tempDivisor << 1
-        else:
-            ans = dividend
-
-        if not positive:
-            ans = -ans
-
-        ans = max(-2 ** 31, ans)
-        ans = min(ans, 2 ** 31 - 1)
-
-        return ans
+        d = abs(dividend)
+        dv = abs(divisor)
+        out = 0
+        
+        while d >= dv:
+            temp = dv
+            mul = 1
+            
+            while d >= temp:
+                d -= temp
+                out += mul
+                mul += mul
+                temp += temp
+        
+        if((dividend < 0 and divisor >= 0) or 
+           (divisor < 0 and dividend >= 0)):
+            out = -out
+            
+        print(out)
+        return min(2147483647,max(-2147483648
+,out))
