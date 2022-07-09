@@ -2,7 +2,7 @@ class Solution:
     def maxResult(self, nums: List[int], k: int) -> int:
         
         heap = [(-nums[0],0)]
-        print(len(nums))
+        
         for i in range(1,len(nums)):
             
             while heap[0][1] < i - k:
