@@ -1,34 +1,33 @@
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        A, B = nums1, nums2
+        a,b = nums1,nums2
         
-        total = len(A) + len(B)
-        half = total // 2 # is gonna tell us the number of elements in the left partition
+        if len(a) > len(b):
+            a,b = b,a
         
-        if len(B) < len(A):
-            A,B = B,A
+        total = len(a) + len(b)
+        half = total//2
         
-        l, r = 0, len(A) - 1
+        l,r = 0, len(a) - 1
         
         while True:
-            i = (l+r)//2
-            j = half - i - 2
+            ma = (l + r)//2
+            mb = half - ma - 2
             
-            Aleft = A[i] if i >= 0 else float("-inf")
-            Aright = A[i + 1] if i + 1 < len(A) else float("inf")
-            Bleft = B[j] if j >= 0 else float("-inf")
-            Bright = B[j + 1] if j + 1 < len(B) else float("inf")
+            aleft = a[ma] if ma >= 0 else float("-inf")
+            bleft = b[mb] if mb >= 0 else float("-inf")
             
-#             left partition is correct
-            if Aleft <= Bright and Bleft <= Aright:
-                if total % 2:
-                    return min(Aright, Bright)
-                return (max(Aleft,Bleft) + min(Aright,Bright))/2
+            aright = a[ma + 1] if ma + 1 < len(a) else float("inf")
+            bright = b[mb + 1] if mb + 1 < len(b) else float("inf")
             
-            elif Aleft > Bright:
-                r = i - 1
+            if aleft <= bright and aright >= bleft:
+                if total % 2 != 0:
+                    return min(aright, bright)
+                
+                return (min(aright,bright) + max(aleft, bleft)) / 2
+            
+            elif aleft > bright:
+                r = ma - 1
             
             else:
-                l = i + 1
-                
-            
+                l = ma + 1
