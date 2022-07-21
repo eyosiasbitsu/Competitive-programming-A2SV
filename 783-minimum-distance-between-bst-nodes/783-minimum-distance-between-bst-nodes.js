@@ -12,25 +12,26 @@
  */
 var minDiffInBST = function(root) {
     
-    let result = Infinity;
-    
     const walk = (node) => {
         if(node === null){
-            return [Infinity,-Infinity];
+            return [];
         }
         
-        const [minleft,maxleft] = walk(node.left);
-        const [minright,maxright] = walk(node.right);
-
-        result = Math.min(
-            result,
-            Math.abs(maxleft - node.val),
-            Math.abs(minright - node.val)
-    );
-    return [Math.min(node.val,minleft), Math.max(node.val,maxright)];
+        const left = walk(node.left);
+        const right = walk(node.right);
+        
+        let temp = left.concat([node.val]);
+        let cur = temp.concat(right);
+        
+        return cur;
+    };
+    
+    let ar = walk(root);
+    let ans = Infinity;
+    console.log(ar);
+    for(let i = 0; i < ar.length - 1; i++){
+        ans = Math.min(ar[i + 1] - ar[i], ans);
     }
     
-    walk(root);
-    
-    return result;
+    return ans;
 };
