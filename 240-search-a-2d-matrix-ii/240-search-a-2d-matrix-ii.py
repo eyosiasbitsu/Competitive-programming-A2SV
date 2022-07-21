@@ -1,27 +1,15 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        r, c = len(matrix) - 1, 0
         
-        for i in range(len(matrix)):
-            row = matrix[i]
-
-            if row[-1] < target:
-                continue
+        while r >= 0 and c < len(matrix[0]):
+            if matrix[r][c] == target:
+                return True
             
-            if row[0] > target:
-                break
+            if matrix[r][c] > target:
+                r -= 1
             
-            l,r = 0,len(row) - 1
-
-            while l <= r:
-                mid = (l + r)//2
-
-                if row[mid] < target:
-                    l = mid + 1
-                
-                elif row[mid] > target:
-                    r = mid - 1
-                
-                else:
-                    return True
+            elif matrix[r][c] < target:
+                c += 1
         
         return False
