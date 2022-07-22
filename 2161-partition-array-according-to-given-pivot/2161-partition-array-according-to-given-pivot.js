@@ -1,17 +1,22 @@
-class Solution:
-    def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
-        less = []
-        greater = []
-        equal = []
-        
-        for n in nums:
-            if n > pivot:
-                greater.append(n)
-            
-            elif n < pivot:
-                less.append(n)
-            
-            else:
-                equal.append(n)
-        
-        return less + equal + greater
+/**
+ * @param {number[]} nums
+ * @param {number} pivot
+ * @return {number[]}
+ */
+var pivotArray = function(nums, pivot) {
+    const less = [];
+    const greater = [];
+    const equal = [];
+    
+    for(item of nums){
+        if(item > pivot){
+            greater.push(item);
+        }else if(item < pivot){
+            less.push(item);
+        }
+        else{
+            equal.push(item);
+        }
+    }
+    return less.concat(equal).concat(greater);
+};
