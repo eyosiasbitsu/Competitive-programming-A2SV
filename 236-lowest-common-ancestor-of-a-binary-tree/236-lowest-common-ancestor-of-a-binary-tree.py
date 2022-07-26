@@ -30,9 +30,9 @@ class Solution:
             
             return [temp1,temp2,node]
         
-        res1,res2,result = dfs(root)
+        result = dfs(root)
         
-        return result
+        return result[2]
             
             
             
