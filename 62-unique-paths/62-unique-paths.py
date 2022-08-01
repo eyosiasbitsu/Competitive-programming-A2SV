@@ -3,16 +3,16 @@ class Solution:
         
         dp = {}
         
-        def path(r,c):
-            if not 0 <= r < m or not 0 <= c < n:
+        def dfs(r, c):
+            if not ( r < m and c < n):
                 return 0
             
-            if r == 0 and c == 0:
+            if r == m - 1 and c == n - 1:
                 return 1
             
-            if (r,c) not in dp:
-                dp[(r,c)] = path(r - 1,c) + path(r,c - 1)
+            if (r, c) not in dp:
+                dp[(r,c)] = dfs(r, c + 1) + dfs(r + 1, c)
             
-            return dp[(r,c)]
+            return dp[(r, c)]
         
-        return path(m-1,n - 1)
+        return dfs(0,0)
