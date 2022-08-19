@@ -1,10 +1,23 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
         
-        for n in nums:
-            print(n, nums[n])
-            if nums[abs(n)] < 0:
-                return abs(n)
+        
+        l = 1
+        r = len(nums)
+        
+        while l <= r:
+            mid = (l + r)//2
+            count = 0
             
-            nums[abs(n)] *= -1
+            for n in nums:
+                if n <= mid:
+                    count += 1
+            
+            if count > mid:
+                r = mid - 1
+            
+            else:
+                l = mid + 1
+        
+        return l
         
