@@ -1,18 +1,22 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        
+    
+        dict1 = { "]" : "[", "}" : "{", ")" : "("}
         stk = []
-        
+
         for c in s:
-            if not stk:
-                stk.append(c)
-            
-            elif ((stk[-1] == '{' and c == '}') or
-                  (stk[-1] == '[' and c == ']') or
-                  (stk[-1] == '(' and c == ')')):
+            if stk and c in dict1 and stk[-1] == dict1[c]:
                 stk.pop()
-            
+
             else:
                 stk.append(c)
-        
-        return not stk
+
+        if not stk:
+            return True
+
+        else:
+            return False
+
+    
+    
+    
