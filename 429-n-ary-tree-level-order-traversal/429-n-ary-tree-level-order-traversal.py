@@ -11,24 +11,20 @@ class Solution:
         if not root:
             return []
         
-        res = []
         que = deque([root])
+        res = []
         
         while que:
             temp = []
             
             for _ in range(len(que)):
                 cur = que.popleft()
-                temp.append(cur.val)
                 
                 for child in cur.children:
                     que.append(child)
+                
+                temp.append(cur.val)
             
             res.append(temp)
         
         return res
-                
-                
-                
-                
-                
