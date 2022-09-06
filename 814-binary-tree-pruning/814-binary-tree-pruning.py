@@ -7,9 +7,6 @@
 class Solution:
     def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         
-        dummy = TreeNode()
-        dummy.right = root
-        
         def dfs(node):
             if not node:
                 return False
@@ -25,6 +22,6 @@ class Solution:
             
             return left or right or node.val
         
-        dfs(dummy)
+        cur = dfs(root)
         
-        return dummy.right
+        return None if not cur else root
