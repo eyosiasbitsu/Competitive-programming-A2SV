@@ -1,23 +1,29 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
         
-        
-        l = 1
-        r = len(nums)
-        
-        while l <= r:
-            mid = (l + r)//2
-            count = 0
+        def cyclic_sort():
+            i = 0
+            n = len(nums)
             
-            for n in nums:
-                if n <= mid:
-                    count += 1
-            
-            if count > mid:
-                r = mid - 1
-            
-            else:
-                l = mid + 1
+            while i != n:
+                correct = nums[i] - 1
+                
+                if correct + 1 != nums[correct]:
+                    nums[correct], nums[i] = nums[i], nums[correct]
+                
+                else:
+                    i += 1
         
-        return l
+        cyclic_sort()
         
+        for i in range(len(nums)):
+            if nums[i] != i + 1:
+                return nums[i]
+            
+            
+            
+            
+            
+            
+            
+            
