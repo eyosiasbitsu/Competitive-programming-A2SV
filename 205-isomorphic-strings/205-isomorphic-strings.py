@@ -1,15 +1,20 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        
-        s_to_t = {}
-        t_to_s = {}
+        mp_s_t = {}
+        mp_t_s = {}
         
         for i in range(len(s)):
-            if ((s[i] in s_to_t and t[i] != s_to_t[s[i]]) or(
-               t[i] in t_to_s and s[i] != t_to_s[t[i]])):
-                return False
+            if t[i] in mp_t_s:
+                if s[i] != mp_t_s[t[i]]:
+                    return False
+                continue
             
-            s_to_t[s[i]] = t[i]
-            t_to_s[t[i]] = s[i]
+            if s[i] in mp_s_t:
+                if t[i] != mp_s_t[s[i]]:
+                    return False
+                continue
+                
+            mp_t_s[t[i]] = s[i]
+            mp_s_t[s[i]] = t[i]
         
         return True
