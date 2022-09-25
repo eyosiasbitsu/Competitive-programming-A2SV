@@ -1,20 +1,24 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        for i in range(len(nums)):
-            nums[i] = (nums[i], i)
+        for i, n in enumerate(nums):
+            nums[i] = (n,i)
         
         nums.sort()
         
         l = 0
-        r=  len(nums) - 1
+        r = len(nums) - 1
         
         while l < r:
-            if nums[l][0] + nums[r][0] == target:
-                return [nums[l][1], nums[r][1]]
+            temp = nums[l][0] + nums[r][0]
             
-            if nums[l][0] + nums[r][0] > target:
+            if temp == target:
+                return nums[l][1], nums[r][1]
+            
+            if temp > target:
                 r -= 1
             
             else:
                 l += 1
+        
+        
