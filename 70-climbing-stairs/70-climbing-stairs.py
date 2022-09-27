@@ -1,9 +1,12 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         
-        dp = { 0: 1, 1 : 1 }
+        f = (0, 1)
+        s = (1, 1)
         
         for i in range(2, n + 1):
-            dp[i] = dp[i - 1] + dp[i - 2]
+            temp = (i, f[1] + s[1])
+            f = s
+            s = temp
         
-        return dp[n]
+        return s[1]
