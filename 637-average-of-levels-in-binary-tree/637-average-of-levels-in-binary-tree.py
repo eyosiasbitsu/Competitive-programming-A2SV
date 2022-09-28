@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
         
@@ -11,10 +12,10 @@ class Solution:
         res = []
         
         while que:
+            size = len(que)
             temp_sum = 0
-            num = len(que)
             
-            for _ in range(num):
+            for _ in range(size):
                 cur = que.popleft()
                 temp_sum += cur.val
                 
@@ -24,6 +25,25 @@ class Solution:
                 if cur.right:
                     que.append(cur.right)
             
-            res.append(temp_sum/num)
+            avg = temp_sum / size
+            res.append(avg)
         
         return res
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                
+                
+                
+                
+                
+                
+                
+                
+                
