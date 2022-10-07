@@ -1,21 +1,32 @@
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
         
+        cach = {}
         res = []
-        ar = []
         
-        def dfs(i):
+        def dfs(i, arr):
             if i == len(graph) - 1:
-                temp = ar[:]
-                temp.append(i)
-                res.append(temp)
+                res.append(arr)
                 return
             
-            ar.append(i)
-            for neigh in graph[i]:
-                dfs(neigh)
-                
-            ar.pop()
+            if not graph[i]:
+                return
             
-        dfs(0)
+            for to in graph[i]:
+                dfs(to, arr + [to])
+
+            return
+        
+        dfs(0, [0])
         return res
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
