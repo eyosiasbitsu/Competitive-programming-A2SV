@@ -6,26 +6,15 @@
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
-        if head == None:
-            return head
+        l = head
+        r = head
         
-        length_of_head = self.length(head)
-        middle = length_of_head // 2 + 1
+        while r != None and r.next != None:
+            r = r.next.next
+            l = l.next
         
-        while middle != 1:
-            middle -= 1
-            head = head.next
-        
-        return head
-        
-    def length(self, node):
-        ln = 0
-        
-        while node != None:
-            ln += 1
-            node = node.next
-        
-        return ln
+        return l
+    
     
     
     
