@@ -1,27 +1,20 @@
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
-        dp = {}
         
-        def helper(i, j):
-            if i == j:
-                return 1
-            
-            if j < i:
-                return 0
-            
-            if (i, j) not in dp:
-                cur = 0
-                if s[i] == s[j]:
-                    cur = 2 + helper(i + 1, j - 1)
+        s2 = s[::-1]
+        
+        dp = [[0 for _ in range(len(s) + 1)] for _ in range(len(s) + 1)]
+        
+        for i in range(len(dp) - 2, -1, -1):
+            for j in range(len(dp) - 2, -1, -1):
+                if s[i] == s2[j]:
+                    dp[i][j] = 1 + dp[i + 1][j + 1]
                 
                 else:
-                    cur = max(helper(i + 1, j), helper(i , j - 1))
-                
-                dp[(i, j)] = cur
-                
-            return dp[(i, j)]
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j + 1])
         
-        return helper(0, len(s) - 1)
+        return dp[0][0]
+        
                 
                 
                 
