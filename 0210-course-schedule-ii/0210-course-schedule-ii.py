@@ -1,8 +1,7 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         
-        visited = set()
-        path = set()
+        color = [0 for _ in range(numCourses)]
         res = []
         
         graph = defaultdict(list)
@@ -11,24 +10,23 @@ class Solution:
             graph[bi].append(ai)
         
         def dfs(n):
-            if n in path:
+            if color[n] == 1:
                 return False
             
-            if n in visited:
+            if color[n] == 2:
                 return True
             
             if not graph[n]:
-                visited.add(n)
+                color[n] = 2
                 res.append(n)
                 return True
             
-            path.add(n)
+            color[n] = 1
             cur = True
             for ch in graph[n]:
                 cur = cur and dfs(ch)
             
-            path.remove(n)
-            visited.add(n)
+            color[n] = 2
             res.append(n)
             return cur
         
