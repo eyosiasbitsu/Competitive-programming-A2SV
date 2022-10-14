@@ -9,16 +9,15 @@ class Solution:
         dummy = ListNode()
         dummy.next = head
         
-        slow = (dummy, head)
+        par = dummy
+        slow = head
         fast = head
         
         while fast and fast.next:
             fast = fast.next.next
-            slow = slow[1], slow[1].next
+            slow = slow.next
+            par = par.next
         
-        par = slow[0]
-        node = slow[1]
-        
-        par.next = node.next
+        par.next = par.next.next
         
         return dummy.next
