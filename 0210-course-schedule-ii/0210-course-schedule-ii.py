@@ -3,7 +3,6 @@ class Solution:
         
         color = [0 for _ in range(numCourses)]
         res = []
-        
         graph = defaultdict(list)
         
         for ai, bi in prerequisites:
@@ -23,6 +22,7 @@ class Solution:
             
             color[n] = 1
             cur = True
+            
             for ch in graph[n]:
                 cur = cur and dfs(ch)
             
@@ -31,7 +31,7 @@ class Solution:
             return cur
         
         for i in range(numCourses):
-            temp = dfs(i)        
+            temp = dfs(i)
             if not temp:
                 return []
         
@@ -40,7 +40,6 @@ class Solution:
                 
                 
                 
-            
-            
-            
-            
+                
+                
+                
