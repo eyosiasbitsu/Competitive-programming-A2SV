@@ -34,11 +34,8 @@ class Disjoint:
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         
-        size = 0
+        size = len(edges)
         
-        for fr, to in edges:
-            size = max(size, fr , to)
-            
         unionFind = Disjoint(size)
         for fr, to in edges:
             if not unionFind.union(fr, to):
