@@ -1,18 +1,29 @@
 class Solution:
     def groupAnagrams(self,  strs: List[str]) -> List[List[str]]:
         
-        words = defaultdict(list)
-        
+        anagrams = defaultdict(list)
+            
         for i in range(len(strs)):
-            word = "".join(sorted(strs[i]))
-            words[word].append(i)
+            sorted_st = list(strs[i])
+            sorted_st.sort()
+            sorted_st = "".join(sorted_st)
+            
+            anagrams[sorted_st].append(strs[i])
         
         result = []
-        for word in words:
-            temp = []
-            for idx in words[word]:
-                temp.append(strs[idx])
-                
-            result.append(temp)
-            
+        for key in anagrams:
+            result.append(anagrams[key])
+        
         return result
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
