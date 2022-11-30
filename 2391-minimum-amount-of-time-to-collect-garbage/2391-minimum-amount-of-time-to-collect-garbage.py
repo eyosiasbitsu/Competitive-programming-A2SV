@@ -4,11 +4,10 @@ class Solution:
         _set = set()
         count = 0
         
-        for st in garbage:
-            count += len(st)
-            
         for i in range(len(garbage) - 1, -1, -1):
             _set |= set(garbage[i])
+            count += len(garbage[i])
+            
             garbage[i] = len(_set)
         
         result = 0
