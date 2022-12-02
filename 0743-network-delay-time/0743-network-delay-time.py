@@ -1,34 +1,42 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        
         adj = {}
+        result = {}
+        min_heap = []
         
         for i in range(1, n + 1):
             adj[i] = []
         
-        for sourse, dest, time in times:
-            adj[sourse].append((dest, time))
+        for src, dst, weight in times:
+            adj[src].append((dst, weight))
         
-        shortest = {}
-        minHeap = [(0, k)]
-        while minHeap:
-            w1, n1 = heapq.heappop(minHeap)
+        heapq.heappush(min_heap, (0, k))
+        
+        while min_heap:
+            cur_weight, cur_node = heapq.heappop(min_heap)
             
-            if n1 in shortest:
+            if cur_node in result:
                 continue
             
-            shortest[n1] = w1
-            
-            for n2, w2 in adj[n1]:
-                if n2 not in shortest:
-                    heapq.heappush(minHeap, (w1 + w2, n2))
+            result[cur_node] = cur_weight
+            for neigh, weight in adj[cur_node]:
+                if neigh not in result:
+                    heapq.heappush(min_heap, (cur_weight + weight, neigh))
         
-        result = 0
-        for k in shortest:
-            result = max(shortest[k], result)
-        
-        if not result or len(shortest) < n:
+        if len(result) < n:
             return -1
         
-        return result
+        min_time = 0
+        for node in result:
+            min_time = max(min_time, result[node])
         
-        
+        return min_time
+            
+            
+            
+            
+            
+            
+            
+            
